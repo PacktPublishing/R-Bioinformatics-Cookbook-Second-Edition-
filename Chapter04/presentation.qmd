@@ -1,0 +1,60 @@
+---
+title: "Motor Cars"
+author: "AN Rwizard"
+format: 
+  pptx:
+    incremental: true
+    reference-doc: reference_presentation.pptx
+  revealjs: 
+    incremental: true
+    theme: blood
+  beamer: 
+    incremental: true
+    theme: AnnArbor
+    colortheme: lily
+---
+
+## Method
+
+::: {.incremental}
+
+- Exploratory plot
+- Statistical modelling
+
+:::
+
+
+## Relationship between cylinder count and Miles Per Gallon
+
+```{r, point1, echo=FALSE}
+library(ggplot2)
+
+p <- ggplot(mtcars) + 
+  aes(cyl, mpg) + 
+  geom_point() + 
+  geom_smooth(method = "lm")
+
+p
+```
+
+## Linear Modelling
+
+:::: {.columns}
+
+::: {.column width="35%"}
+```{r, point2, echo=FALSE}
+p
+```
+:::
+  
+::: {.column width="65%"}
+```{r, point2_model}
+lm(mpg ~ cyl, data=mtcars)
+```
+:::
+
+::::
+  
+::: {.notes}
+Discuss the negative slope...
+:::  

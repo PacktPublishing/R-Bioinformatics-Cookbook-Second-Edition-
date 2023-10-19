@@ -1,0 +1,30 @@
+project:
+  type: website
+  output-dir: docs
+
+website:
+  title: "Bioinformatics Report"
+  navbar:
+    left:
+      - href: index.qmd
+        text: Index
+      - contact.qmd
+  sidebar: 
+    search: true
+    contents: 
+      - section: "Intro to Bioinformatics"
+        contents: 
+          - 01-intro.qmd
+      - section: "Sequence Data and its uses"
+        contents: 
+          - 02-nucleotide-sequence.qmd
+          - 03-amino-acid-sequence.qmd
+      - section: "Conclusions"
+        contents:
+          - 04-wrap-up.qmd
+        
+format:
+  html:
+    theme: cosmo
+    css: styles.css
+    toc: true

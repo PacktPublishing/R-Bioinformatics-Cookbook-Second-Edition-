@@ -1,0 +1,30 @@
+## THIS IN THE TERMINAL
+
+conda config --add channels defaults
+conda config --add channels bioconda
+conda config --add channels conda-forge
+conda config --set channel_priority strict
+
+conda create --name bioinformatics_project
+conda activate bioinformatics_project
+
+conda install minimap2 gatk samtools==1.15.1
+
+## THIS IN R
+
+env_path <- function(env, program = ""){
+
+  df <- reticulate::conda_list()
+  b <- df$python[which(df$name == env)]
+
+  if (length(b) == 0) {
+    stop("no environment with that name found")
+  }
+
+  file.path(dirname(b), program)
+}
+
+
+minimap2 <- env_path("bioinformatics_project", "minimap2")
+
+system(paste(minimap2, "-h"))

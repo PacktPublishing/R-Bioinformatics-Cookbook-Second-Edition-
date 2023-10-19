@@ -1,0 +1,22 @@
+{
+  "contact.qmd": {
+    "contact.html": "245a8489",
+    "contact.tex": "ebd7c174"
+  },
+  "index.qmd": {
+    "index.html": "cc462a25",
+    "index.tex": "4046dffe"
+  },
+  "02-nucleotide-sequence.qmd": {
+    "02-nucleotide-sequence.html": "40b19854"
+  },
+  "01-intro.qmd": {
+    "01-intro.html": "db6d587b"
+  },
+  "04-wrap-up.qmd": {
+    "04-wrap-up.html": "f0640a5e"
+  },
+  "03-amino-acid-sequence.qmd": {
+    "03-amino-acid-sequence.html": "7dd83fcb"
+  }
+}

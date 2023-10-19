@@ -1,0 +1,48 @@
+---
+title: "R Markdown in Quarto Report"
+author: "AN Rwizard"
+date: "`r format(Sys.time(), '%d %B, %Y')`"
+output: html_document
+---
+
+You are reading a document created with Rmarkdown and rendered in Quarto. 
+
+This document includes a mixture of text and code. \The code below is wrapped in back ticks and at render-time the code will be executed and the  result inserted into the document
+
+```{r}
+library(palmerpenguins)
+x <- penguins$bill_length_mm
+y <- penguins$bill_depth_mm
+
+lm(y ~ x)
+```
+
+We can format any text using Markdown, simple inline text elements convey the formatting
+
+## Hashes at the start of a line make it a heading.
+
+Two hashes gives a Level 2 heading, three hashes a Level 3 heading. Headings go from Level 1 (biggest) to Level 6 (smallest)
+
+We can create text formats including _italics_ and **bold**.
+
+We can make lists:
+
+  1. First item
+  2. Second item
+  
+We can make hyperlinks [a link to Google](https://www.google.com)
+
+
+The whole document acts as a single R session  - so objects created in earlier
+blocks can be used later. 
+
+Plots are inserted into the document.
+
+Options for code blocks can be set at the top after a `#|` (a hash and a pipe).
+
+```{r}
+#| fig-width: 6
+#| fig-cap: "A plot, yesterday."
+
+plot(x,y)
+```

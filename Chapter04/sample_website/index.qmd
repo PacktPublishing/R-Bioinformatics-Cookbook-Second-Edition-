@@ -1,0 +1,12 @@
+# Index Page
+
+This would be an index page for your website. It is needed by the Quarto template, so you should always have a file called index.qmd
+
+
+## Some new heading
+
+New headings are turned into Nav elements in the rendered website
+
+## Another new heading
+
+This can be useful as the document grows

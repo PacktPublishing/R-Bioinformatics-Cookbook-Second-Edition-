@@ -1,0 +1,49 @@
+## R Code
+
+ws_path <- fs::path_package("extdata", "sample_website", 
+                               package="rbioinfcookbook")
+fs::dir_copy(ws_path, 'somewhere/on/your/system')
+
+## YAML Header
+
+project:
+  type: website
+  output-dir: docs
+
+website:
+  title: "Bioinformatics Report"
+  navbar:
+    left:
+      - href: index.qmd
+        text: Index
+      - contact.qmd
+        
+format:
+  html:
+    theme: cosmo
+    css: styles.css
+    toc: true
+    
+## Terminal command
+
+quarto render
+
+## R Code
+
+  sidebar: 
+    search: true
+    contents: 
+      - section: "Intro to Bioinformatics"
+        contents: 
+          - 01-intro.qmd
+      - section: "Sequence Data and its uses"
+        contents: 
+          - 02-nucleotide-sequence.qmd
+          - 03-amino-acid-sequence.qmd
+      - section: "Conclusions"
+        contents:
+          - 04-wrap-up.qmd
+          
+## Terminal Command
+
+quarto render

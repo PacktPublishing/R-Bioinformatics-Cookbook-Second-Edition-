@@ -1,0 +1,43 @@
+---
+title: "Penguin Exploration"
+format: html
+server: shiny
+---
+
+## Examining the penguins data interactively
+
+In this document we will look at relationships between different aspects of the penguins data.
+
+
+```{r}
+#| panel: sidebar
+num_vars <- c("bill_length_mm", "flipper_length_mm", "body_mass_g")
+cat_vars <- c("species", "island", "sex")
+
+selectInput("x", "Variable on X", num_vars)
+selectInput("y", "Variable on Y", num_vars)
+selectInput("colour", "Colour by", cat_vars)
+```
+
+
+```{r}
+#| panel: fill
+plotOutput("scatter_plot")
+```
+
+
+```{r}
+#| context: server
+
+library(ggplot2)
+library(palmerpenguins)
+output$scatter_plot <- renderPlot({
+
+  ggplot(penguins) + 
+    aes_string(input$x, input$y) + 
+    geom_point(aes_string(colour = input$colour)) + 
+    theme_minimal() +
+    scale_color_brewer(palette = "Set2")
+  
+})
+```

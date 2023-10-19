@@ -1,0 +1,32 @@
+## Terminal Commands
+
+kallisto index -i gc38 gc38_transcripts.fa
+
+for sample in 245 428 337 401 257 383
+do
+kallisto  quant -i gc38 \
+-t 1 -b 42 -o quantifications_${sample} \
+ERR188${sample}_1.fq.gz ERR188${sample}_2.fq.gz
+done
+
+## R Code
+
+base <- c("245", "428", "337", "401", "257", "383")
+
+s2c <- data.frame(
+  sample = paste0("ERR188", base),
+  condition = c( rep("F", 3), rep("M",3) ),
+  path =  paste0("quantifications_", base)
+)
+
+library(sleuth)
+so <- sleuth_prep(s2c, extra_bootstrap_summary = TRUE)
+
+so <- sleuth_fit(so, ~condition, 'full',
+                 transformation_function = function(x) log2(x + 0.5))
+so <- sleuth_fit(so, ~1, 'reduced')
+
+so <- sleuth_wt(so, "conditionM")
+results <- sleuth_results(so, "conditionM")
+
+dplyr::arrange(results,  desc(b) )

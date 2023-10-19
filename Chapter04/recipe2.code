@@ -1,0 +1,81 @@
+## R Code
+
+qmd_path <- fs::path_package("extdata", "mtcars.qmd", 
+                               package="rbioinfcookbook")
+file.copy(qmd_path, 'somewhere/on/your/system/mtcars.qmd')
+
+bib_path <- fs::path_package("extdata", "mtcars.bib", 
+                               package="rbioinfcookbook")
+file.copy(bib_path, 'somewhere/on/your/system/mtcars.bib')
+
+
+## YAML Header
+
+---
+title: "mtcars Analysis"
+subtitle: "an analysis in many formats" 
+author: "anrwizard@email.com"
+date-modified: "`r format(Sys.time(), '%d %B, %Y')`"
+email-obfuscation: javascript
+bibliography: mtcars.bib
+execute:
+  echo: true
+  warning: false
+format:
+  html:
+    theme: cyborg
+    toc: true
+    toc-location: left
+    html-math-method: katex
+    css: styles.css
+    number-sections: true
+    cap-location: top
+    code-fold: true
+    code-line-numbers: true
+    citations-hover: false
+---
+
+## R Code
+
+csl_path <- fs::path_package("extdata", "bioinformatics.csl", 
+                               package="rbioinfcookbook")
+file.copy(csl_path, 'somewhere/on/your/system/bioinformatics.csl')
+
+## Extra YAML
+
+  pdf: 
+    pdf-engine: xelatex
+    papersize: A4
+    documentclass: report
+    toc: true
+    toc-title: "Workflow"
+    lof: true
+    mainfont: Arial
+    monofont: Courier
+    fontsize: "24"
+    colorlinks: true
+    cap-location: margin
+    csl: bioinformatics.csl
+    
+## Terminal command
+
+quarto render mtcars.qmd --to html,pdf
+
+## R Code
+
+docx_path <- fs::path_package("extdata", "custom-reference-doc.docx", 
+                               package="rbioinfcookbook")
+file.copy(docx_path, 'somewhere/on/your/system/custom-reference-doc.docx')
+
+## Extra YAML
+
+  docx:
+    reference-doc: custom-reference-doc.docx
+    fig-align: center
+    fig-width: 20
+    number-sections: true
+    citeproc: true
+    
+## Terminal command
+
+quarto render mtcars.qmd --to html,pdf,docx

@@ -1,0 +1,60 @@
+## Abstract
+
+The mtcars [@henderson_velleman_1981 ] dataset is a well-known dataset in the R community, which contains information about different types of cars and their fuel efficiency. In this analysis, we will explore the relationships between various features of the cars and their fuel efficiency, represented by miles per gallon (mpg). We will use visualization techniques, such as scatter plots and box plots, and statistical methods, such as linear regression, to gain insights into the data.
+
+For discussion of this analysis email: [anrwizard\@email.com](mailto:anrwizard@email.com){.email}
+
+## Analysis
+
+First, let's load the mtcars dataset and perform some basic exploratory data analysis.
+
+```{r}
+library(ggplot2)
+data("mtcars")
+head(mtcars)
+```
+
+Next, let's create a scatter plot of the mpg against the weight of the car (wt).
+
+```{r}
+#| label: fig-scatter
+#| fig.cap: "Weight vs Efficiency"
+
+ggplot(data = mtcars, aes(x = wt, y = mpg)) + 
+  geom_point() + 
+  xlab("Weight of the Car (wt)") + 
+  ylab("Fuel Efficiency (mpg)") + 
+  ggtitle("Scatterplot of mpg against wt")
+```
+
+From the scatter plot @fig-scatter, we can see a negative relationship between the weight of the car and its fuel efficiency. The heavier the car, the lower its fuel efficiency.
+
+Next, let's fit a linear regression model to predict mpg from wt, so that $mpg \sim wt + e$
+
+```{r}
+model <- lm(mpg ~ wt, data = mtcars)
+summary(model)
+```
+
+The linear regression model has a coefficient of -5.344 for the wt variable, which suggests that for every one unit increase in weight, there is a decrease of 5.344 units in mpg. The p-value for the wt variable is also extremely low, indicating that the relationship between weight and fuel efficiency is statistically significant.
+
+Finally, let's create a box plot of mpg by the number of cylinders (cyl) in the car's engine.
+
+```{r}
+#| label: fig-boxplot
+#| fig.cap: "Cylinders vs Efficiency"
+
+ggplot(data = mtcars, aes(x = factor(cyl), y = mpg)) + 
+  geom_boxplot() + 
+  xlab("Number of Cylinders (cyl)") + 
+  ylab("Fuel Efficiency (mpg)") + 
+  ggtitle("Box Plot of mpg by cyl")
+```
+
+From the box plot @fig-boxplot, we can see that cars with 4 cylinders tend to have higher fuel efficiency compared to cars with 6 or 8 cylinders.
+
+## Results
+
+The analysis of the mtcars dataset revealed that there is a negative relationship between the weight of a car and its fuel efficiency, with heavier cars having lower fuel efficiency. The linear regression model showed that this relationship is statistically significant. Additionally, cars with 4 cylinders tend to have higher fuel efficiency compared to cars with 6 or 8 cylinders. These insights can be useful for car manufacturers and consumers in making informed decisions about fuel efficiency.
+
+## References

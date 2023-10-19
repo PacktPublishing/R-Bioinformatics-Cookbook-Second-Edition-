@@ -1,0 +1,3 @@
+# Contacts
+
+A page in the website for contact information. This is a placeholder for the purposes of example. It can be anything you want.

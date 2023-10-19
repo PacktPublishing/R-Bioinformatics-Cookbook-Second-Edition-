@@ -1,0 +1,3 @@
+library(datapasta)
+mtcars |> 
+  dpasta()
